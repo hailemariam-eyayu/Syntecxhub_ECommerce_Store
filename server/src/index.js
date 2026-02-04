@@ -3,6 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
+import authRoutes from './routes/auth.js';
+import productRoutes from './routes/products.js';
+import orderRoutes from './routes/orders.js';
+
 dotenv.config();
 
 const app = express();
@@ -16,7 +20,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'Syntecxhub E-Commerce API is running' });
 });
 
-// TODO: add auth, products, cart, and orders routes
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 async function start() {
   try {
@@ -34,4 +41,5 @@ async function start() {
 }
 
 start();
+
 
